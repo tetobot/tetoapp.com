@@ -1,0 +1,41 @@
+{
+  "name": "tetoapp.com",
+  "version": "0.0.1",
+  "description": "Teto's landing page.",
+  "main": "index.js",
+  "dependencies": {
+    "autoprefixer": "^6.3.4",
+    "postcss-cli": "^2.5.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.4",
+    "ghooks": "^1.0.3",
+    "local-web-server": "^1.2.1",
+    "nodemon": "^1.9.1",
+    "postcss-cli": "^2.5.1"
+  },
+  "scripts": {
+    "start": "ws -d ./src --port 9876",
+    "build": "npm run html && npm run assets && npm run script && npm run css",
+    "css": "postcss --use autoprefixer src/*.css -d dist/",
+    "assets": "cp -r src/assets/ dist/assets/",
+    "script": "cp -r src/script.js dist/script.js",
+    "html": "cp -r src/index.html dist/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tetobot/tetoapp.com.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tetobot/tetoapp.com/issues"
+  },
+  "homepage": "https://github.com/tetobot/tetoapp.com#readme",
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run build",
+      "pre-push": "echo 'Did you remember to build the css?'"
+    }
+  }
+}
